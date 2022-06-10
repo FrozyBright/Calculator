@@ -1,0 +1,45 @@
+.container{
+  margin: 0 auto;
+
+}
+
+.row{
+  margin: 0 auto;
+  text-align: center;
+  width: 429px;
+  background-color: rgb(174 131 217);
+  border: 1px solid #8e8e8e;
+}
+
+.button{
+  width: 100px;
+  height: 70px;
+  outline: none;
+  letter-spacing: 1px;
+  margin-left: -4px;
+}
+
+.display{
+  margin: 0 auto;
+  text-align: center;
+  width: 429px;
+  height: 60px;
+  background-color: rgb(205 0 0 / 21%);
+  margin-bottom: 5px;
+  border-collapse: 39px;
+  border-block-end-style: 14px;
+  border-bottom-style: solid;
+  border-color: white;
+  border-bottom-width: inherit;
+}
+#operator{
+  width: 50px;
+  height: 20px;
+  color: white;
+  float: right;
+}
+#message{
+  width: 300px;
+  height: 39px;
+  margin: auto;
+}

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+     <link rel="stylesheet" href="MyCal.css">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="display">
+          <div id="message"></div>
+          <div id="operator"></div>
+        </div>
+        <button class="button" type="button" name="button">7</button>
+        <button class="button" type="button" name="button">8</button>
+        <button class="button" type="button" name="button">9</button>
+        <button class="button" type="button" name="button">&larr;</button>
+        <button class="button" type="button" name="button">4</button>
+        <button class="button" type="button" name="button">5</button>
+        <button class="button" type="button" name="button">6</button>
+        <button class="button" type="button" name="button">+</button>
+        <button class="button" type="button" name="button">1</button>
+        <button class="button" type="button" name="button">2</button>
+        <button class="button" type="button" name="button">3</button>
+        <button class="button" type="button" name="button">–</button>
+        <button class="button" type="button" name="button">=</button>
+        <button class="button" type="button" name="button">0</button>
+        <button class="button" type="button" name="button">/</button>
+        <button class="button" type="button" name="button">*</button>
+      </div>
+    </div>
+  <script>
+   var mykeys = $(".button");
+   // console.log(mykeys[9].innerHTML);
+   // click on any buttons
+   var operand1 = [];
+   var operand2 = [];
+   var operator = "";
+   var computed = 0;
+
+   $(".button").on("click", function(){
+
+     if(computed){
+       $("#message").html("");
+       $("#operator").html("");
+       operand1 = [];
+       operand2 = [];
+       operator = "";
+       computed = 0;
+     }
+
+     // once clicked then show the value in the display
+     // Where are the values? we need to find values somehow
+     // Now I have every values in mykeys variable (an array)
+     var clickedButton = $(this)[0].innerHTML;
+     // console.log(clickedButton);
+     // // console.log(clickedButton[0].innerHTML);
+     // // check if clickedButton is a number or an operator
+     var numberRegex = /^[+-]?\d+(\.\d+)?([eE][+-]?\d+)?$/;
+     if(numberRegex.test(clickedButton)) {
+       if(operator == ""){
+         $("#message").append(clickedButton);
+         operand1.push(clickedButton);
+       }else{
+         if(operand2=="")$("#message").html("");
+         $("#message").append(clickedButton);
+         operand2.push(clickedButton);
+       }
+     }else if(clickedButton == "+" || clickedButton == "–" || clickedButton == '*' || clickedButton == "/"){
+        operator = clickedButton;
+        console.log("operator: ", operator);
+        $("#operator").html(operator);
+     }else if(clickedButton == "="){
+       if(operand2!=""){
+         var sum = 0;
+         one = operand1.join('');
+         two = operand2.join('');
+         one = parseInt(one)
+         two  = parseInt(two)
+         $("#message").html("");
+         switch (operator) {
+           case "–":
+              var subtract = one - two;
+              $("#message").html(subtract);
+              break;
+           case "+":
+              var add = one + two;
+              $("#message").html(add);
+              break;
+           case "/":
+              var division = one / two;
+              $("#message").html(division);
+              break;
+           case "*":
+              var multipy = one * two;
+              $("#message").html(multipy);
+              break;
+           default:
+
+         }
+         $("#operator").html("=");
+         computed = 1
+       }
+     }
+     // $(".display").append(clickedButton);
+
+     // var numbers = $(".display").text();
+     // console.log(numbers);
+
+     console.log("operand1: ", operand1, "operator: ", operator, "operand2: ", operand2);
+   });
+
+
+  </script>
+  </body>
+</html>
